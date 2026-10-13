@@ -525,6 +525,65 @@ h3 {
   margin-right: auto;
 }
 
+/* Features Section */
+#features {
+  background-color: var(--color-surface-sunken);
+  scroll-margin-top: 80px; /* Offset for sticky header */
+  text-align: center; /* Center the heading and intro text */
+}
+
+#features .text-lead {
+  max-width: 65ch; /* Cap measure for readability */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.feature-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  margin-top: var(--space-7); /* Gap between intro and grid */
+}
+
+@media (min-width: 640px) {
+  .feature-cards-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 960px) {
+  .feature-cards-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content within the card */
+  text-align: center;
+}
+
+.feature-card__icon {
+  color: var(--color-accent);
+  margin-bottom: var(--space-4);
+}
+
+.feature-card__title {
+  font-size: var(--text-h3);
+  line-height: var(--text-h3-line-height);
+  font-weight: 650;
+  color: var(--color-ink);
+  margin-bottom: var(--space-3);
+}
+
+.feature-card__description {
+  font-size: var(--text-body);
+  line-height: var(--text-body-line-height);
+  color: var(--color-ink-soft);
+  max-width: 50ch; /* Cap measure for readability */
+}
+
 /* Buttons */
 .btn {
   display: inline-flex;
