@@ -12,7 +12,7 @@
     <meta property="og:url" content="https://beacon.example/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="theme-color" content="#1D7A8C">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%231D7A8C'/%3E%3C/svg%3E"><!-- inline SVG dot, no file request -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%231D7A8C\'/%3E%3C/svg%3E"><!-- inline SVG dot, no file request -->
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -55,7 +55,37 @@
                 </svg>
             </div>
         </section>
-        <!-- P-03 Features will go here -->
+
+        <section id="features" class="section" aria-labelledby="features-heading">
+            <div class="container">
+                <h2 id="features-heading" class="section__heading">Three things, done properly.</h2>
+                <p class="section__intro text-lead">We are not building an observability platform. We are building the part that wakes you up.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card card">
+                        <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="feature-card__icon">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM17 11H13V7H11V11H7V13H11V17H13V13H17V11Z" fill="currentColor"/>
+                        </svg>
+                        <h3 class="feature-card__title">Checks that mean something</h3>
+                        <p class="feature-card__description text-body text-ink-soft">Every 30 seconds from Mumbai, Frankfurt and Oregon. A check fails only when two of the three agree it failed, so a bad route in one region does not page you at 3am.</p>
+                    </div>
+                    <div class="feature-card card">
+                        <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="feature-card__icon">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM17 11H13V7H11V11H7V13H11V17H13V13H17V11Z" fill="currentColor"/>
+                        </svg>
+                        <h3 class="feature-card__title">Alerts that reach a human</h3>
+                        <p class="feature-card__description text-body text-ink-soft">SMS first, then a phone call if nobody acknowledges within five minutes. Email is a courtesy copy, not the alert.</p>
+                    </div>
+                    <div class="feature-card card">
+                        <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="feature-card__icon">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM17 11H13V7H11V11H7V13H11V17H13V13H17V11Z" fill="currentColor"/>
+                        </svg>
+                        <h3 class="feature-card__title">A status page you can point at</h3>
+                        <p class="feature-card__description text-body text-ink-soft">One public page per project, on your own domain, updated automatically when a check fails. No copy-paste incident updates.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="pricing" class="section" aria-labelledby="pricing-heading">
             <div class="container">
@@ -88,7 +118,7 @@
                         <button class="btn btn--primary">Join the waitlist</button>
                     </div>
 
-                    <div class="plan-card card">
+                    <div class="plan-card card">\
                         <h3 class="plan-card__name">Business</h3>
                         <p class="plan-card__price"><span class="text-h2">$79</span> <span class="text-small plan-card__interval">per month</span></p>
                         <ul role="list" class="plan-card__features">
@@ -107,7 +137,7 @@
         <!-- P-06 Waitlist will go here -->
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer">\
         <div class="container">
             <div class="site-footer__col">
                 <span class="site-footer__wordmark">Beacon</span>
