@@ -27,6 +27,14 @@
   --text-small: 0.875rem;
   --text-micro: 0.75rem;
 
+  --text-display-line-height: 1.05;
+  --text-h2-line-height: 1.2;
+  --text-h3-line-height: 1.35;
+  --text-body-line-height: 1.6;
+  --text-lead-line-height: 1.55;
+  --text-small-line-height: 1.5;
+  --text-micro-line-height: 1.4;
+
   /* Spacing */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -68,7 +76,7 @@ html {
 body {
   margin: 0;
   font-family: var(--font-sans);
-  line-height: var(--text-body-line-height); /* Needs to be defined in tokens for consistency */
+  line-height: var(--text-body-line-height);
   color: var(--color-ink);
   background-color: var(--color-surface);
   -webkit-font-smoothing: antialiased;
@@ -119,42 +127,45 @@ address {
 /* Base Typography */
 body {
   font-size: var(--text-body);
-  line-height: var(--text-body-line-height, 1.6); /* Default if not in tokens */
+  line-height: var(--text-body-line-height);
   color: var(--color-ink);
 }
 h1 {
   font-size: var(--text-display);
-  line-height: 1.05;
+  line-height: var(--text-display-line-height);
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 h2 {
   font-size: var(--text-h2);
-  line-height: 1.2;
+  line-height: var(--text-h2-line-height);
   font-weight: 700;
   letter-spacing: -0.01em;
 }
 h3 {
   font-size: var(--text-h3);
-  line-height: 1.35;
+  line-height: var(--text-h3-line-height);
   font-weight: 650;
 }
 .text-lead {
   font-size: var(--text-lead);
-  line-height: 1.55;
+  line-height: var(--text-lead-line-height);
   font-weight: 400;
 }
 .text-small {
   font-size: var(--text-small);
-  line-height: 1.5;
+  line-height: var(--text-small-line-height);
   font-weight: 400;
 }
 .text-micro {
   font-size: var(--text-micro);
-  line-height: 1.4;
+  line-height: var(--text-micro-line-height);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+.text--color-ink-faint {
+  color: var(--color-ink-faint);
 }
 
 /* Layout */
@@ -296,7 +307,7 @@ h3 {
 
 .site-footer__description {
   font-size: var(--text-small);
-  line-height: var(--text-small-line-height, 1.5);
+  line-height: var(--text-small-line-height);
   max-width: 30ch; /* Cap measure for readability */
 }
 
@@ -392,4 +403,124 @@ h3 {
 .chip--signal {
   background-color: var(--color-signal);
   color: var(--color-surface); /* White text as per spec */
+}
+
+/* Pricing Section */
+#pricing {
+  scroll-margin-top: 80px; /* Offset for sticky header */
+}
+
+.plan-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  margin-top: var(--space-7); /* Gap between intro and grid */
+  margin-bottom: var(--space-7);
+}
+
+@media (min-width: 640px) {
+  .plan-cards-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 960px) {
+  .plan-cards-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.plan-card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  position: relative; /* For chip positioning */
+}
+
+.plan-card--featured {
+  background-color: var(--color-accent-wash);
+  border: 1px solid var(--color-accent); /* As per spec: accent border */
+  box-shadow: var(--shadow-raised);
+}
+
+.plan-card--featured .chip {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center horizontally and lift half its height */
+  margin-top: var(--space-2); /* Small adjustment to lift it off the top edge */
+}
+
+.plan-card__title {
+  font-size: var(--text-h3);
+  line-height: var(--text-h3-line-height);
+  font-weight: 650;
+  color: var(--color-ink);
+  margin-top: var(--space-3); /* Space after chip or top of card */
+  margin-bottom: var(--space-3);
+}
+
+.plan-card--featured .plan-card__title {
+  margin-top: var(--space-6); /* More space to account for the chip */
+}
+
+.plan-card__price {
+  font-size: var(--text-h2);
+  line-height: var(--text-h2-line-height);
+  font-weight: 700;
+  color: var(--color-ink);
+  margin-bottom: var(--space-5);
+}
+
+.plan-card__features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-7) 0;
+  flex-grow: 1; /* To push button to the bottom */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align checkmarks to the left */
+  text-align: left;
+}
+
+.plan-card__features li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+  font-size: var(--text-body);
+  color: var(--color-ink-soft);
+}
+
+.plan-card__feature-icon {
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.plan-card__button {
+  margin-top: auto; /* Push button to the bottom */
+  display: inline-block;
+  padding: var(--space-3) var(--space-5);
+  background-color: var(--color-accent);
+  color: var(--color-surface);
+  border-radius: var(--radius-md);
+  font-size: var(--text-small);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease);
+  width: 100%; /* Make button full width in card */
+}
+
+.plan-card__button:hover,
+.plan-card__button:focus {
+  background-color: var(--color-accent-strong);
+  text-decoration: none;
+}
+
+.pricing-honesty-note {
+  text-align: center;
+  margin-top: var(--space-6);
+  max-width: 65ch; /* Cap measure for readability */
+  margin-left: auto;
+  margin-right: auto;
 }
