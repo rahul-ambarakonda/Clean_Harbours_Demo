@@ -304,7 +304,6 @@ p {
   color: var(--color-ink-soft);
 }
 
-
 /* Card component */
 .card {
   background-color: var(--color-surface);
@@ -540,6 +539,49 @@ p {
   margin-left: auto;
   margin-right: auto;
   max-width: 100%; /* Ensure it's responsive */
+}
+
+/* Feature Grid */
+.feature-grid {
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: 1fr; /* Single column by default */
+}
+
+@media (min-width: 640px) {
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr); /* Two columns above 640px */
+  }
+}
+
+@media (min-width: 960px) {
+  .feature-grid {
+    grid-template-columns: repeat(3, 1fr); /* Three columns above 960px */
+  }
+}
+
+/* Feature Card Component */
+.feature-card {
+  text-align: center; /* Center content within the card */
+}
+
+.feature-card__icon {
+  width: 32px;
+  height: 32px;
+  color: var(--color-accent); /* Icon color */
+  margin-left: auto; /* Center the SVG */
+  margin-right: auto; /* Center the SVG */
+  margin-bottom: var(--space-4);
+  flex-shrink: 0; /* Prevent icon from shrinking in flex container */
+}
+
+.feature-card__title {
+  color: var(--color-ink); /* H3 color */
+  margin-bottom: var(--space-2);
+}
+
+.feature-card__description {
+  color: var(--color-ink-soft); /* Paragraph text color */
 }
 
 /* Site Footer */
