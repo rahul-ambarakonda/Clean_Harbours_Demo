@@ -30,7 +30,31 @@
     </header>
 
     <main id="main">
-        <!-- P-02 Hero will go here -->
+        <section id="top" class="hero" aria-labelledby="hero-headline">
+            <div class="container">
+                <span class="chip chip--accent text-micro">Pre-launch</span>
+                <h1 id="hero-headline" class="hero__headline">Know your site is down before your customers tell you.</h1>
+                <p class="hero__lead text-lead">Beacon checks your endpoints every 30 seconds from three regions and texts you the moment one stops answering. No dashboard to watch, no agent to install.</p>
+                <div class="hero__actions">
+                    <a href="#waitlist" class="btn btn--primary">Join the waitlist</a>
+                    <a href="#features" class="btn btn--secondary">See how it works</a>
+                </div>
+                <svg aria-hidden="true" width="480" height="120" viewBox="0 0 480 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero__pulse-graphic">
+                    <!-- Simplified grid lines -->
+                    <rect x="0" y="0" width="480" height="120" stroke="var(--color-border)" stroke-width="1"/>
+                    <line x1="0" y1="20" x2="480" y2="20" stroke="var(--color-border)" stroke-width="1"/>
+                    <line x1="0" y1="40" x2="480" y2="40" stroke="var(--color-border)" stroke-width="1"/>
+                    <line x1="0" y1="80" x2="480" y2="80" stroke="var(--color-border)" stroke-width="1"/>
+                    <line x1="0" y1="100" x2="480" y2="100" stroke="var(--color-border)" stroke-width="1"/>
+                    <line x1="120" y1="0" x2="120" y2="120" stroke="var(--color-border)" stroke-width="1"/>
+                    <line x1="240" y1="0" x2="240" y2="120" stroke="var(--color-border)" stroke-width="1"/>
+                    <line x1="360" y1="0" x2="360" y2="120" stroke="var(--color-border)" stroke-width="1"/>
+
+                    <!-- Pulse graphic -->
+                    <path d="M0 60L100 60L140 20L180 60L480 60" stroke="var(--color-signal)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </section>
         <!-- P-03 Features will go here -->
 
         <section id="pricing" class="section" aria-labelledby="pricing-heading">
