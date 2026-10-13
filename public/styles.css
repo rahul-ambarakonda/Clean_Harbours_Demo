@@ -705,7 +705,7 @@ h3 {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  padding: var(--space-7); /* More padding for card in waitlist section */
+  padding: var(--space-7);
 }
 
 .waitlist-card .section__heading {
@@ -714,14 +714,14 @@ h3 {
 
 .waitlist-reassurance {
   margin-bottom: var(--space-6);
-  max-width: 45ch; /* Cap measure for readability */
+  max-width: 45ch;
   margin-left: auto;
   margin-right: auto;
 }
 
 .waitlist-privacy {
   margin-top: var(--space-6);
-  max-width: 50ch; /* Cap measure for readability */
+  max-width: 50ch;
   margin-left: auto;
   margin-right: auto;
   line-height: var(--text-small-line-height);
@@ -730,7 +730,7 @@ h3 {
 /* Form field component */
 .field {
   margin-bottom: var(--space-5);
-  text-align: left; /* Ensure text aligns left within the field */
+  text-align: left;
 }
 
 .field__label {
@@ -887,4 +887,13 @@ h3 {
   color: var(--color-ink-soft);
   line-height: var(--text-body-line-height);
   max-width: 65ch;
+}
+
+/* Status message colors */
+.field__status--positive {
+  color: var(--color-positive);
+}
+
+.field__status--error {
+  color: var(--color-negative);
 }
