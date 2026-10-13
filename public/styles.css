@@ -460,6 +460,88 @@ p {
   border-color: var(--color-accent-strong);
 }
 
+.btn--secondary {
+  background-color: transparent;
+  border: var(--border);
+  color: var(--color-ink);
+}
+
+.btn--secondary:hover,
+.btn--secondary:focus {
+  background-color: var(--color-surface-sunken);
+  border-color: var(--color-border);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+/* Hero section */
+.hero {
+  background-color: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: var(--space-9);
+  padding-bottom: var(--space-9);
+  scroll-margin-top: 80px;
+}
+
+.hero > .container {
+  max-width: 720px; /* Capped max width */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content within the container */
+}
+
+.hero .chip {
+  margin-bottom: var(--space-5);
+}
+
+.hero__headline {
+  color: var(--color-ink);
+  margin-bottom: var(--space-5);
+  max-width: 65ch; /* Apply measure cap as per typography */
+}
+
+.hero__lead {
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-7);
+  max-width: 65ch; /* Apply measure cap as per typography */
+}
+
+.hero__actions {
+  display: flex;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+  flex-wrap: wrap; /* Allow buttons to wrap */
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-7);
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    width: 100%; /* Take full width to allow block buttons to expand */
+  }
+
+  .hero__actions .btn {
+    width: 100%; /* Full width buttons for mobile */
+  }
+}
+
+.hero__pulse-graphic {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%; /* Ensure it's responsive */
+}
+
 /* Site Footer */
 .site-footer {
   background-color: var(--color-footer);
