@@ -524,3 +524,109 @@ h3 {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-md);
+  font-size: var(--text-body);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease);
+  text-decoration: none; /* Remove underline from anchors */
+}
+
+.btn--primary {
+  background-color: var(--color-accent);
+  color: var(--color-surface);
+}
+
+.btn--primary:hover,
+.btn--primary:focus {
+  background-color: var(--color-accent-strong);
+  transform: translateY(-1px);
+}
+
+.btn--primary:active {
+  transform: translateY(1px);
+}
+
+.btn--secondary {
+  background-color: transparent;
+  border: var(--border);
+  color: var(--color-ink);
+}
+
+.btn--secondary:hover,
+.btn--secondary:focus {
+  background-color: var(--color-surface-sunken);
+  transform: translateY(-1px);
+}
+
+.btn--secondary:active {
+  transform: translateY(1px);
+}
+
+.btn--block {
+  width: 100%;
+}
+
+/* Hero Section */
+#hero {
+  scroll-margin-top: 80px; /* Offset for sticky header */
+}
+
+.hero {
+  background-color: var(--color-surface);
+  text-align: center;
+  max-width: 720px; /* Capped width as per spec */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero__eyebrow {
+  margin-bottom: var(--space-4);
+  margin-top: 0;
+}
+
+.hero__headline {
+  margin-bottom: var(--space-4);
+  max-width: 18ch; /* Capped measure for readability */
+}
+
+.hero__lead {
+  max-width: 65ch; /* Capped measure for readability */
+  margin-bottom: var(--space-6);
+}
+
+.hero__actions {
+  display: flex;
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+
+@media (max-width: 640px) {
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+    gap: var(--space-3);
+  }
+
+  .hero__actions .btn {
+    width: 100%; /* Ensure buttons fill width when stacked */
+  }
+}
+
+.hero__pulse-graphic {
+  margin-top: var(--space-7);
+}
