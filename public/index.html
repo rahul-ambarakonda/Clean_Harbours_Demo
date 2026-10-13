@@ -196,6 +196,72 @@
         </p>
       </div>
     </section>
+
+    <section id="waitlist" class="section" aria-labelledby="waitlist-heading" style="scroll-margin-top: 80px;">
+      <div class="container">
+        <div class="card waitlist-card">
+          <h2 id="waitlist-heading" class="section__heading">Get the launch email.</h2>
+          <p class="text-lead text--color-ink-soft waitlist-reassurance">One email when Beacon opens. Nothing else, ever.</p>
+          <form id="waitlist-form" method="post" action="/api/waitlist">
+            <div class="field">
+              <label for="email" class="field__label">Email address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@company.com"
+                autocomplete="email"
+                inputmode="email"
+                aria-describedby="email-help waitlist-status"
+                class="field__input"
+              />
+              <p id="email-help" class="field__help">We will only use this to tell you when Beacon is ready.</p>
+              <p id="waitlist-status" role="status" aria-live="polite" class="field__status"></p>
+            </div>
+            <button type="submit" class="btn btn--primary waitlist-submit-btn">Join the waitlist</button>
+          </form>
+          <p class="waitlist-privacy text-small text--color-ink-faint">No newsletter, no partner offers, no tracking pixels.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 id="faq-heading" class="section__heading">Frequently asked questions.</h2>
+        <div class="faq-items">
+          <details class="faq-item">
+            <summary class="faq-item__question text-h3">What does Beacon do?</summary>
+            <div class="faq-item__answer text-body text--color-ink-soft">
+              Beacon is an uptime monitor. It checks if your website or API endpoint is responding from multiple geographic locations. If it detects a problem, it alerts you immediately.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question text-h3">How often does Beacon check my site?</summary>
+            <div class="faq-item__answer text-body text--color-ink-soft">
+              Checks are performed every 30 seconds for Team and Business plans, and every 60 seconds for the Solo plan. These checks originate from diverse global regions to ensure comprehensive coverage.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question text-h3">What kind of alerts does Beacon send?</summary>
+            <div class="faq-item__answer text-body text--color-ink-soft">
+              For Team and Business plans, Beacon sends SMS alerts first, followed by a phone call if the alert is not acknowledged. Email is provided as a courtesy copy for all plans.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question text-h3">Can I get a status page?</summary>
+            <div class="faq-item__answer text-body text--color-ink-soft">
+              Yes, Business plans include a public status page on your own domain, automatically updated when a check fails. This helps you communicate incidents to your users without manual updates.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question text-h3">What if I have more questions?</summary>
+            <div class="faq-item__answer text-body text--color-ink-soft">
+              You can reach us at <a href="mailto:support@beacon.example">support@beacon.example</a>. We are happy to answer any further questions you may have about Beacon.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -227,5 +293,6 @@
       <p class="site-footer__copyright">© 2026 Beacon. Not a real product.</p>
     </div>
   </footer>
+  <script type="module" src="/app.js"></script>
 </body>
 </html>
