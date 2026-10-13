@@ -517,6 +517,10 @@ h3 {
   text-decoration: none;
 }
 
+.plan-card__button:active {
+  transform: translateY(1px);
+}
+
 .pricing-honesty-note {
   text-align: center;
   margin-top: var(--space-6);
@@ -688,4 +692,199 @@ h3 {
 
 .hero__pulse-graphic {
   margin-top: var(--space-7);
+}
+
+/* Waitlist Section */
+#waitlist {
+  background-color: var(--color-surface);
+  scroll-margin-top: 80px; /* Offset for sticky header */
+}
+
+.waitlist-card {
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding: var(--space-7); /* More padding for card in waitlist section */
+}
+
+.waitlist-card .section__heading {
+  margin-bottom: var(--space-4);
+}
+
+.waitlist-reassurance {
+  margin-bottom: var(--space-6);
+  max-width: 45ch; /* Cap measure for readability */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.waitlist-privacy {
+  margin-top: var(--space-6);
+  max-width: 50ch; /* Cap measure for readability */
+  margin-left: auto;
+  margin-right: auto;
+  line-height: var(--text-small-line-height);
+}
+
+/* Form field component */
+.field {
+  margin-bottom: var(--space-5);
+  text-align: left; /* Ensure text aligns left within the field */
+}
+
+.field__label {
+  display: block;
+  font-size: var(--text-small);
+  font-weight: 600;
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-2);
+}
+
+.field__input {
+  display: block;
+  width: 100%;
+  height: 44px;
+  padding: var(--space-3) var(--space-4);
+  border: var(--border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-body);
+  color: var(--color-ink);
+  background-color: var(--color-surface);
+  transition: border-color var(--duration-fast) var(--ease);
+}
+
+.field__input:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-color: var(--color-accent);
+}
+
+.field__input[aria-invalid="true"] {
+  border-color: var(--color-negative);
+}
+
+.field__input::placeholder {
+  color: var(--color-ink-faint);
+}
+
+.field__help,
+.field__error {
+  font-size: var(--text-small);
+  line-height: var(--text-small-line-height);
+  margin-top: var(--space-2);
+  margin-bottom: 0;
+}
+
+.field__help {
+  color: var(--color-ink-faint);
+}
+
+.field__error {
+  color: var(--color-negative);
+}
+
+.field__status {
+  font-size: var(--text-small);
+  line-height: var(--text-small-line-height);
+  margin-top: var(--space-3);
+  margin-bottom: 0;
+  min-height: calc(var(--text-small) * var(--text-small-line-height)); /* Reserve space for message */
+  text-align: center;
+}
+
+/* Waitlist form layout */
+#waitlist-form {
+  display: flex;
+  flex-direction: row; /* Default to row on desktop */
+  gap: var(--space-4);
+  align-items: flex-start;
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+#waitlist-form .field {
+  flex-grow: 1;
+  margin-bottom: 0; /* Remove bottom margin as form handles spacing */
+}
+
+.waitlist-submit-btn {
+  flex-shrink: 0; /* Prevent button from shrinking */
+  width: auto; /* Auto width on desktop */
+  align-self: flex-start; /* Align with input top */
+  margin-top: calc(var(--text-small) + var(--space-2) + var(--space-2)); /* Align button to top of input for desktop, considering label and help text */
+}
+
+@media (max-width: 640px) {
+  #waitlist-form {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .waitlist-submit-btn {
+    width: 100%; /* Full width button on mobile */
+    margin-top: 0; /* Reset margin for mobile stack */
+  }
+}
+
+/* FAQ section styling, ensuring summary has target of 44px */
+#faq {
+  background-color: var(--color-surface-sunken);
+  scroll-margin-top: 80px; /* Offset for sticky header */
+  text-align: center;
+}
+
+.faq-items {
+  margin-top: var(--space-7);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: var(--border); /* Top border for first item */
+}
+
+.faq-item {
+  text-align: left;
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-5);
+  border-bottom: var(--border); /* Bottom border for all items */
+}
+
+.faq-item__question {
+  position: relative;
+  display: block;
+  padding-right: var(--space-7);
+  cursor: pointer;
+  font-size: var(--text-h3);
+  line-height: var(--text-h3-line-height);
+  font-weight: 650;
+  color: var(--color-ink);
+  margin: 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.faq-item__question::after {
+  content: " ";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  width: 1.2em;
+  height: 1.2em;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234B5765' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform var(--duration-base) var(--ease);
+}
+
+.faq-item[open] .faq-item__question::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.faq-item__answer {
+  margin-top: var(--space-4);
+  color: var(--color-ink-soft);
+  line-height: var(--text-body-line-height);
+  max-width: 65ch;
 }
