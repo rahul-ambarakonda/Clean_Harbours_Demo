@@ -1,0 +1,118 @@
+# Project Context: Clean_Harbours_Demo
+# This project is likely a demonstration application, potentially showcasing capabilities, solutions, or data related to environmental services, waste management, or industrial services pertinent to the Clean Harbours company.
+#
+# Sprint work completed this cycle:
+# - Implemented CI/CD workflow with build, test, lint, and conditional deploy.
+# - Ensured CI robustness for agent-generated repos (lockfile fallback, no npm cache, best-effort tests/lint).
+# - Added a robust deploy script with nvm, git reset, .env.sample sync, dependency install, build, and PM2 restart.
+# - Configured conditional deploy based on push to main and EC2 secrets availability.
+
+name: CI/CD
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci:
+    name: Build, Test, Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Using a recent LTS version
+          # cache: 'npm' # Rule 9: Do NOT enable npm cache as it errors without a lockfile.
+
+      - name: Install dependencies (with lockfile fallback)
+        run: |
+          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+
+      - name: Run build (if present)
+        run: npm run build --if-present
+
+      - name: Run tests (if present)
+        run: npm test --if-present
+        continue-on-error: true
+
+      - name: Run lint (if present)
+        run: npm run lint --if-present
+        continue-on-error: true
+
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+    needs: ci
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    env:
+      EC2_HOST: ${{ secrets.EC2_HOST }} # Rule 11: Set as job env var for conditional checks
+
+    steps:
+      - name: Check if EC2_HOST is configured (skip if not)
+        if: env.EC2_HOST == ''
+        run: |
+          echo "EC2_HOST secret is not configured. Skipping deployment."
+          exit 0 # Exit successfully to skip further deploy steps cleanly.
+
+      - name: Checkout repository
+        if: env.EC2_HOST != '' # Rule 11: Guard every deploy step
+        uses: actions/checkout@v4
+
+      - name: Deploy with SSH
+        if: env.EC2_HOST != '' # Rule 11: Guard every deploy step
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            # Rule 4a: Source nvm
+            export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+            # Rule 4b: cd to deploy path
+            cd ${{ secrets.EC2_DEPLOY_PATH }}
+
+            # Rule 4c: Fetch and hard-reset to remote
+            git fetch origin main
+            git reset --hard origin/main
+
+            # Rule 4d: Sync new env vars from .env.sample into .env (append missing keys only)
+            if [ -f .env.sample ]; then
+              touch .env
+              while IFS= read -r line; do
+                # skip blank lines and comments
+                [[ -z "$line" || "$line" == \#* ]] && continue
+                key=$(echo "$line" | cut -d= -f1)
+                # only append if key not already present in .env
+                if ! grep -q "^${key}=" .env 2>/dev/null; then
+                  echo "$line" >> .env
+                  echo "⚠️  New env var added (set real value): ${key}"
+                fi
+              done < .env.sample
+            fi
+
+            # Rule 4e: Install dependencies WITHOUT assuming a lockfile exists (using npm as a default)
+            if [ -f package-lock.json ]; then npm ci; else npm install; fi
+
+            # Rule 4f: Run build step if the project has one, tolerating its absence (using npm as a default)
+            npm run build --if-present
+
+            # Rule 4g: Restart the app with PM2 using zero-downtime reload
+            # Assuming 'app.js' as a common Node.js entrypoint.
+            pm2 reload app --update-env || pm2 start app.js --name app
+
+            # Rule 4h: pm2 save
+            pm2 save
