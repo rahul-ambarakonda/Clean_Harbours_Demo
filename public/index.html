@@ -12,7 +12,7 @@
     <meta property="og:url" content="https://beacon.example/">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="theme-color" content="#1D7A8C">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%231D7A8C\'/%3E%3C/svg%3E"><!-- inline SVG dot, no file request -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'%3E%3Ccircle cx=\'50\' cy=\'50\' r=\'50\' fill=\'%231D7A8C\'/\%3E%3C/svg%3E"><!-- inline SVG dot, no file request -->
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -118,7 +118,7 @@
                         <button class="btn btn--primary">Join the waitlist</button>
                     </div>
 
-                    <div class="plan-card card">\
+                    <div class="plan-card card">
                         <h3 class="plan-card__name">Business</h3>
                         <p class="plan-card__price"><span class="text-h2">$79</span> <span class="text-small plan-card__interval">per month</span></p>
                         <ul role="list" class="plan-card__features">
@@ -134,10 +134,73 @@
             </div>
         </section>
 
+        <section id="faq" class="section section--sunken" aria-labelledby="faq-heading" style="scroll-margin-top: var(--space-8);">
+            <div class="container">
+                <h2 id="faq-heading" class="section__heading">Questions people have asked.</h2>
+                <div class="faq-list">
+                    <details class="faq__item">
+                        <summary class="faq__question">
+                            When does Beacon launch?
+                            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="faq__chevron">
+                                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </summary>
+                        <div class="faq__answer text-body text-ink-soft">
+                            <p>We are aiming for the first half of 2027. The waitlist is how we decide who gets in first and roughly how many checks we need to be ready for.</p>
+                        </div>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question">
+                            Do I need to install anything?
+                            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="faq__chevron">
+                                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </summary>
+                        <div class="faq__answer text-body text-ink-soft">
+                            <p>No. Beacon calls your public endpoints from the outside, the same way your customers do. There is no agent, no sidecar and no code change.</p>
+                        </div>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question">
+                            What counts as a check?
+                            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="faq__chevron">
+                                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </summary>
+                        <div class="faq__answer text-body text-ink-soft">
+                            <p>One URL, checked on one interval. A homepage and an API health route are two checks.</p>
+                        </div>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question">
+                            Will you sell my email address?
+                            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="faq__chevron">
+                                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </summary>
+                        <div class="faq__answer text-body text-ink-soft">
+                            <p>No. It goes in one file on one server and it is used to send you one launch email. Reply to that email with the word "remove" and it is deleted.</p>
+                        </div>
+                    </details>
+                    <details class="faq__item">
+                        <summary class="faq__question">
+                            Who is building this?
+                            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="faq__chevron">
+                                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </summary>
+                        <div class="faq__answer text-body text-ink-soft">
+                            <p>Two engineers who have carried a pager for a combined fourteen years and have opinions about being woken up unnecessarily.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
         <!-- P-06 Waitlist will go here -->
     </main>
 
-    <footer class="site-footer">\
+    <footer class="site-footer">
         <div class="container">
             <div class="site-footer__col">
                 <span class="site-footer__wordmark">Beacon</span>
