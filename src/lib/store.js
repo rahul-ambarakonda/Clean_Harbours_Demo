@@ -1,53 +1,62 @@
-import { promises as fs } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { promises as fs } from 'fs';
+import * as path from 'path';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const dataDir = join(__dirname, '../../data');
-const storeFilePath = join(dataDir, 'waitlist.json');
-const tempStoreFilePath = join(dataDir, 'waitlist.json.tmp');
+const DATA_DIR = './data';
+const WAITLIST_FILE = path.join(DATA_DIR, 'waitlist.json');
+const WAITLIST_TMP_FILE = path.join(DATA_DIR, 'waitlist.json.tmp');
 
 let writePromise = Promise.resolve();
 
 async function readStore() {
   try {
-    const content = await fs.readFile(storeFilePath, 'utf8');
+    const content = await fs.readFile(WAITLIST_FILE, 'utf8');
     return JSON.parse(content);
   } catch (error) {
     if (error.code === 'ENOENT') {
+      // File not found, return initial structure
       return { version: 1, entries: [] };
     }
-    throw error;
+    // If file is malformed or other error, log and return initial structure
+    console.error(`Error reading store: ${error.message}`);
+    return { version: 1, entries: [] };
   }
 }
 
 async function writeStore(data) {
-  // Ensure data directory exists
-  await fs.mkdir(dataDir, { recursive: true });
-
-  const json = JSON.stringify(data, null, 2);
-  await fs.writeFile(tempStoreFilePath, json, 'utf8');
-  await fs.rename(tempStoreFilePath, storeFilePath);
+  writePromise = writePromise.then(async () => {
+    await fs.mkdir(DATA_DIR, { recursive: true });
+    const json = JSON.stringify(data, null, 2);
+    await fs.writeFile(WAITLIST_TMP_FILE, json, 'utf8');
+    await fs.rename(WAITLIST_TMP_FILE, WAITLIST_FILE);
+  }).catch(error => {
+    console.error(`Error writing store: ${error.message}`);
+    throw error; // Re-throw to propagate the error in the chain
+  });
+  return writePromise;
 }
 
 export async function hasEmail(email) {
   const store = await readStore();
-  return store.entries.some(entry => entry.email === email);
+  const normalizedEmail = email.trim().toLowerCase();
+  return store.entries.some(entry => entry.email === normalizedEmail);
 }
 
 export async function addEntry(email, ip) {
-  writePromise = writePromise.then(async () => {
-    const store = await readStore();
-    store.entries.push({
-      email,
-      joinedAt: new Date().toISOString(),
-      ip,
-    });
-    await writeStore(store);
-  });
-  return writePromise;
+  const normalizedEmail = email.trim().toLowerCase();
+  const store = await readStore();
+
+  if (store.entries.some(entry => entry.email === normalizedEmail)) {
+    throw new Error('ALREADY_JOINED');
+  }
+
+  const newEntry = {
+    email: normalizedEmail,
+    joinedAt: new Date().toISOString(),
+    ip,
+  };
+  store.entries.push(newEntry);
+  await writeStore(store);
+  return newEntry;
 }
 
 export { readStore };
